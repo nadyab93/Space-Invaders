@@ -33,7 +33,7 @@ function remove() {
     }
 } 
 
-// squares[currentShooterIndex].classList.add('shooter')
+squares[currentShooterIndex].classList.add('shooter')
 
 
 function moveShooter(e) {
@@ -87,6 +87,33 @@ function moveInvaders() {
             resultsDisplay.innerHTML = 'GAME OVER'
         }
       }
+}  
+invadersId = setInterval(moveInvaders, 500)
+
+function shoot(e) {
+    let laserId
+    let currentLaserIndex = currentShooterIndex
+    function moveLaser() {
+        squares[currentLaserIndex].classList.remove('laser')
+        currentLaserIndex -= width
+        squares[currentLaserIndex].classList.add('laser')
+
+        if(squares[currentLaserIndex].classList.contains('invader')) {
+            squares[currentLaserIndex].classList.remove('laser')
+            squares[currentLaserIndex].classList.remove('invader')
+            squares[currentLaserIndex].classList.add('boom')
+
+            setTimeout(()=> squares[currentLaserIndex].classList.remove('boom'), 300)
+            clearInterval(laserId)
+
+            const alienRemoval = alienInvaders.indexOf(currentLaserIndex)
+        }
+        
+    }
+    switch(e.key) {
+        case 'ArrowUp':
+          laserId = setInterval(moveLaser, 100)
+      }
 }
 
-invadersId = setInterval(moveInvaders, 500)
+document.addEventListener('keydown', shoot)

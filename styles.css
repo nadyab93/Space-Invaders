@@ -4,6 +4,7 @@
     border: solid black 1px;
     display: flex;
     flex-wrap: wrap;
+    background-color: black;
 }
 
 .grid div{
@@ -12,10 +13,18 @@
 }
 
 .invader{
-    background-color: purple;
+    background-color: white;
     border-radius: 10px;
 }
 
 .shooter{
+    background-color: green;
+}
+
+.laser{
+    background-color: green;
+}
+
+.boom{
     background-color: red;
 }
